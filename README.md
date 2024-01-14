@@ -8,7 +8,7 @@ Welcome to this repository! Here, you'll find an in-depth analysis of property s
 
 This project is divided into several parts:
 
-1. **Data Extraction**: The data has been collected data from the [HM Land Registry Price Paid Data](https://www.gov.uk/government/statistical-data-sets/price-paid-data-downloads) and from the[Energy Performance Certificates (EPCs)](https://epc.opendatacommunities.org/).
+1. **Data Extraction**: The data has been collected data from the [HM Land Registry Price Paid Data](https://www.gov.uk/government/statistical-data-sets/price-paid-data-downloads) and from the [Energy Performance Certificates (EPCs)](https://epc.opendatacommunities.org/).
 
 2. **Data Wrangling and Transformation**: The raw data is processed using Python in a Jupyter notebook. With the help of Spark, pandas, and matplotlib, the data has been cleaned, transformed, and structured to make it suitable for analysis and visualization.
 
@@ -18,7 +18,7 @@ This project is divided into several parts:
 
 You'll find the Tableau dashboard here: https://public.tableau.com/app/profile/pietro.verde/viz/PropertySalesPricesinLondon/PropertySales
 
-Feel free to explore the repository, run the Jupyter notebook, and interact with the Tableau visualization. We hope this project provides valuable insights and serves as a useful resource for understanding London's property market.
+Feel free to explore the repository, run the Jupyter notebook, and interact with the Tableau visualization. I hope this project provides valuable insights and serves as a useful resource for understanding London's property market.
 
 Happy exploring! 🏠📊
 
