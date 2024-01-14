@@ -1,7 +1,5 @@
 # London Property Sales Price Analysis
 
-### WORK IN PROGRESS
-
 Welcome to this repository! Here, you'll find an in-depth analysis of property sales prices in London. This project aims to provide insights into the real estate market trends in one of the world's most vibrant cities.
 
 ## Project Overview
