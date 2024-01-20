@@ -14,7 +14,7 @@ This project is divided into several parts:
 
 4. **Visualization**: The dataset is used to create an interactive visualization hosted on Tableau. This visualization allows users to explore the trends in London's property sales prices.
 
-You'll find the Tableau dashboard here: https://public.tableau.com/app/profile/pietro.verde/viz/PropertySalesPricesinLondon/PropertySales
+You'll find the Tableau dashboard here: https://public.tableau.com/app/profile/pietro.verde/viz/LondonPropertySalesPrice/PropertySales
 
 Feel free to explore the repository, run the Jupyter notebook, and interact with the Tableau visualization. I hope this project provides valuable insights and serves as a useful resource for understanding London's property market.
 
