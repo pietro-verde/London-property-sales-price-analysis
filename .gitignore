@@ -5,6 +5,9 @@ data/
 tmp/
 scratchpad/
 
+## python virtual environment folder 
+property
+
 ## enviroment variables
 terraform/secrets/
 
