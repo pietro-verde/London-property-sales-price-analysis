@@ -6,7 +6,7 @@ tmp/
 scratchpad/
 
 ## python virtual environment folder 
-property
+property-sales-venv/
 
 ## enviroment variables
 terraform/secrets/
