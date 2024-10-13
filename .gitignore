@@ -1,9 +1,11 @@
-## temp and work in progress folders
+## temp and data folders
 temp/
 prova.*
 data/
 tmp/
 scratchpad/
+data_old/
+dwh/
 
 ## python virtual environment folder 
 property-sales-venv/

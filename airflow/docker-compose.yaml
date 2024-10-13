@@ -4,15 +4,13 @@ x-airflow-common:
     context: .
     dockerfile: ./Dockerfile
   env_file: 
-    - .env
+    - .env-airflow
 
   volumes:
     - ${AIRFLOW_PROJ_DIR:-.}/dags:/opt/airflow/dags
     - ${AIRFLOW_PROJ_DIR:-.}/logs:/opt/airflow/logs
     - ${AIRFLOW_PROJ_DIR:-.}/config:/opt/airflow/config
     - ${AIRFLOW_PROJ_DIR:-.}/plugins:/opt/airflow/plugins
-    # - ~/.oci:/.oci
-    # - ~/.google/credentials/:/.google/credentials:ro
 
   user: "${AIRFLOW_UID:-50000}:0"
   depends_on:
@@ -21,12 +19,14 @@ x-airflow-common:
       condition: service_healthy
 
 services:
-  postgres:
+  postgres-airflow:
     image: postgres:13
     env_file:
-      - .env
+      - .env-airflow
     volumes:
       - postgres-db-volume:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
     healthcheck:
       test: ["CMD", "pg_isready", "-U", "airflow"]
       interval: 10s
@@ -133,7 +133,7 @@ services:
         chown -R "${AIRFLOW_UID}:0" /sources/{logs,dags,plugins}
         exec /entrypoint airflow version
     env_file: 
-      - .env
+      - .env-airflow
     user: "0:0"
     volumes:
       - ${AIRFLOW_PROJ_DIR:-.}:/sources
@@ -143,12 +143,51 @@ services:
     profiles:
       - debug
     env_file:
-      - .env
+      - .env-airflow
     command:
       - bash
       - -c
       - airflow
 
+  pgwarehouse:
+    image: postgres:13
+    env_file:
+      - .env-pg-jup
+    volumes:
+      - "./../dwh:/var/lib/postgresql/data:rw"
+    ports:
+      - "5431:5433"
+  
+  pgadmin:
+    image: dpage/pgadmin4
+    env_file:
+      - .env-pg-jup
+    ports:
+      - "8090:80"
+
+  jupyterlab:
+    image: jupyter/pyspark-notebook
+    env_file:
+      - .env-pg-jup
+    volumes:
+      - "./../notebooks:/home/jovyan/work"
+      - "./../jars:/opt/spark/jars"
+    ports:
+      - "8889:8888"
+    depends_on:
+      - pgwarehouse
+      - spark
+
+
+  spark:
+    image: bitnami/spark:latest
+    ports:
+      - "7077:7077"
+    environment:
+      - SPARK_MODE=master
+      - SPARK_RPC_PORT_NUMBER=7077
+    volumes:
+      - ./jars:/Drivers/SQL_Sever/jdbc
 
 volumes:
   postgres-db-volume:

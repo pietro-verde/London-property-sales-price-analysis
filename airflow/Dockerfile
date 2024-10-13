@@ -11,8 +11,6 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 SHELL ["/bin/bash", "-o", "pipefail", "-e", "-u", "-x", "-c"]
 
-## TO DO: COPY FOLDER WITH OCI CONFIG
-
 WORKDIR $AIRFLOW_HOME
 
 
