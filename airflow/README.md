@@ -26,4 +26,4 @@ Note: It may take a while before your DAG appears in the UI. We can speed things
 docker exec -it --user airflow airflow-scheduler bash -c "airflow dags list"
 
 example using airflow-scheduler id:
-docker exec -it --user airflow 4d6b4500cec8 bash -c "airflow dags list"
+docker exec -it --user airflow scheduler bash -c "airflow dags list"

@@ -1,3 +1,5 @@
 oci
 pyarrow
 pandas
+pyspark
+boto3
