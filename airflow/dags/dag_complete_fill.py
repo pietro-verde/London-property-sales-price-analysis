@@ -19,10 +19,10 @@ ppd_download_bucket_folder = 'ppd-download-chunks/'
 epc_download_bucket_folder = 'epc-download-chunks/'
 ppd_download_local_folder = '/data/ppd_cache/'
 epc_download_local_folder = '/data/epc_cache/'
-epc_file_path = dag_configs["epc_file_test"]#["epc_file_path"]
+epc_file_path = dag_configs["epc_file_path"]#["epc_file_test"]
 with open(epc_file_path, "rb") as f:
     epc_files = pickle.load(f)
-ppd_csv_url = dag_configs["ppd_csv_url_month"]#["ppd_csv_url_complete"]
+ppd_csv_url = dag_configs["ppd_csv_url_complete"]#["ppd_csv_url_month"]
 chunk_size = 100_000
 save_as_table_name = "london"
 write_mode = dag_configs["write_mode"]
