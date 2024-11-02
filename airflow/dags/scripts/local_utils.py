@@ -4,7 +4,7 @@ def clean_folder(folder):
     try:
         files = os.listdir(folder)
         for f in files:
-            os.remove(f'{fol}/{f}')
+            os.remove(f'{folder}/{f}')
         print(f'Folder {folder} cleaned.')
     except FileNotFoundError as e:
         print(e)

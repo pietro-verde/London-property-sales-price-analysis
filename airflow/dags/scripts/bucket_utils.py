@@ -56,12 +56,15 @@ class Bucket:
 
 
     def list_objects(self):
+        obj_list = []
         response = self.s3_client.list_objects_v2(Bucket=self.bucket_name)
         try:
             for obj in response["Contents"]:
-                print(obj['Key'])
+                obj_list.append(obj['Key'])
         except KeyError as e:
             print("No content to list.")
+        return obj_list
+    
 
     def put_object(self, 
                    local_folder, 

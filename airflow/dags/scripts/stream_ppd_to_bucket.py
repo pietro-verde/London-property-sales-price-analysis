@@ -7,9 +7,11 @@ def transform(df):
         (df['COUNTY'] == 'GREATER LONDON')
         &(df['DATE_OF_TRANSFER'] >= "2010-01-01")
         ]    
+    for col in df.columns:
+        df[col] = df[col].astype(str)
     return df
 
-def stream_web_to_bucket(namespace, 
+def stream_ppd_to_bucket(namespace, 
                         bucket_name,
                         local_folder,
                         bucket_folder,
