@@ -5,7 +5,9 @@ Welcome to this repository! Here, you'll find an in-depth analysis of property s
 
 ### Data sources 
 
-The data has been collected data from the [HM Land Registry Price Paid Data](https://www.gov.uk/government/statistical-data-sets/price-paid-data-downloads) and from the [Energy Performance Certificates (EPCs)](https://epc.opendatacommunities.org/).
+[HM Land Registry Price Paid Data](https://www.gov.uk/government/statistical-data-sets/price-paid-data-downloads) 
+
+[Energy Performance Certificates (EPCs)](https://epc.opendatacommunities.org/)
 
 
 ### Tech Stack & Tools
