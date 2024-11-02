@@ -2,7 +2,6 @@ from airflow import DAG
 from airflow.operators.bash_operator import BashOperator
 from airflow.operators.python import PythonOperator
 from scripts.bucket_utils import clear_buckets
-from scripts.local_utils import clean_folder_list
 from scripts.download_epc import download_epc_file_list
 from scripts.unzip_epc import extract_file_list
 from scripts.stream_epc_to_bucket import stream_epc_files_to_bucket
