@@ -67,7 +67,8 @@ def stream_epc_files_to_bucket(file_list,
         stream_file_to_bucket(bucket_session = bucket_session,
                               local_folder = local_folder, 
                               local_filename = 'certificates.csv',
-                              destination_folder = f"{epc_bucket_folder}{local_folder.split('/')[1]}/",
+                            #   destination_folder = f"{epc_bucket_folder}{local_folder.split('/')[1]}/",
+                              destination_folder = f"{epc_bucket_folder}{epc_unzipped_file_folder}",
                               chunk_size = chunk_size)
 
     bucket_session.close()
