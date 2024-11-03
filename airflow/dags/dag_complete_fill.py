@@ -19,14 +19,14 @@ ppd_download_bucket_folder = 'ppd-download-chunks/'
 epc_download_bucket_folder = 'epc-download-chunks/'
 ppd_download_local_folder = '/data/ppd_cache/'
 epc_download_local_folder = '/data/epc_cache/'
-epc_file_path = dag_configs["epc_file_path"]#["epc_file_test"]
+epc_file_path = dag_configs["epc_file_test"]#["epc_file_path"]
 with open(epc_file_path, "rb") as f:
     epc_files = pickle.load(f)
-ppd_csv_url = dag_configs["ppd_csv_url_complete"]#["ppd_csv_url_month"]
+ppd_csv_url = dag_configs["ppd_csv_url_month"]#["ppd_csv_url_complete"]
 chunk_size = 100_000
 save_as_table_name = "london"
 write_mode = dag_configs["write_mode"]
-local_save_path = '/data/output/london-sales-price.csv'
+local_save_path = '/data/output/complete/'
 
 
 
@@ -123,6 +123,13 @@ t_bucket_to_dwh = PythonOperator(
     dag = dag
     )
 
+
+t_clear_save_path = BashOperator(
+    task_id='clear_save_path',
+    bash_command = f"rm -rf {local_save_path}*",
+    dag = dag
+    )
+
 t_save_csv = PythonOperator(
     task_id='save_csv',
     python_callable=save_csv,
@@ -151,4 +158,4 @@ t_clear_local_folder_end = BashOperator(
     dag = dag
     )
 
-t_clear_bucket >> t_clear_local_folder >> t_download_epc >> t_unzip_epc >> t_stream_epc_to_bucket >> t_stream_ppd_to_bucket >> t_bucket_to_dwh >> t_save_csv >> t_clear_bucket_end >> t_clear_local_folder_end
+t_clear_bucket >> t_clear_local_folder >> t_download_epc >> t_unzip_epc >> t_stream_epc_to_bucket >> t_stream_ppd_to_bucket >> t_bucket_to_dwh >> t_clear_save_path >> t_save_csv >> t_clear_bucket_end >> t_clear_local_folder_end

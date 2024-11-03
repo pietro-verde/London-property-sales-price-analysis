@@ -4,6 +4,7 @@ from pyspark.sql import types
 from scripts.bucket_utils import Bucket
 from datetime import datetime
 import os
+import pickle
 
 def bucket_to_dwh(region,
                   namespace, 
@@ -14,6 +15,8 @@ def bucket_to_dwh(region,
                   write_mode):
 
     match_rate_path = "/data/match_rate_log.txt"
+
+    index_bounds_path = "/data/index-bound.pkl"
     
     OCI_ACCESS_KEY_ID = os.environ['OCI_ACCESS_KEY_ID']
     OCI_SECRET_ACCESS_KEY = os.environ['OCI_SECRET_ACCESS_KEY']
@@ -129,7 +132,20 @@ def bucket_to_dwh(region,
     data = data.na.fill({"TOTAL_FLOOR_AREA": 0})
     
     data = data.withColumn('DATE_OF_TRANSFER',F.col('DATE_OF_TRANSFER').cast(types.DateType()))
+    data = data.withColumn('PRICE',F.col('PRICE').cast(types.FloatType()))
     
+    data = data.withColumn("__index__", F.monotonically_increasing_id())
+    data = data.drop('__index_level_0__')
+
+    index_bounds = data.select(
+                F.min("__index__").alias('MIN_INDEX'),
+                F.max("__index__").alias('MAX_INDEX')
+            ).collect()
+    
+    bounds_list = [index_bounds[0][0], index_bounds[0][1]]
+    with open(index_bounds_path, "wb") as f:
+        pickle.dump(bounds_list, f)
+
     data.write.jdbc(url=db_url, table=save_as_table_name, mode=write_mode, properties=db_properties)
     
     spark.stop()
