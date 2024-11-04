@@ -23,14 +23,18 @@ def bucket_to_dwh(region,
     OCI_REGION = region
     OCI_NAMESPACE = namespace
     BUCKET_NAME = bucket_name
+    DWH_USER = os.environ["DWH_USER"]
+    DWH_PASSWORD = os.environ["DWH_PASSWORD"]
+    DWH_DB = os.environ["DWH_DB"]
     
-    db_url = "jdbc:postgresql://pgwarehouse:5432/london"
+    db_url = f"jdbc:postgresql://pgwarehouse:5432/{DWH_DB}"
     db_properties = {
-        "user": "root",
-        "password": "root",
+        "user": DWH_USER,
+        "password": DWH_PASSWORD,
         "driver": "org.postgresql.Driver"
     }
-    
+
+
     spark = SparkSession.builder \
         .master("local[*]") \
         .appName('Transform') \

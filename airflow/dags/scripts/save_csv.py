@@ -11,12 +11,18 @@ def save_csv(table_name, local_save_path):
     with open(index_bounds_path, "rb") as f:
         index_bounds = pickle.load(f)
 
-    db_url = "jdbc:postgresql://pgwarehouse:5432/london"
+    
+    DWH_USER = os.environ["DWH_USER"]
+    DWH_PASSWORD = os.environ["DWH_PASSWORD"]
+    DWH_DB = os.environ["DWH_DB"]
+    
+    db_url = f"jdbc:postgresql://pgwarehouse:5432/{DWH_DB}"
     db_properties = {
-        "user": "root",
-        "password": "root",
+        "user": DWH_USER,
+        "password": DWH_PASSWORD,
         "driver": "org.postgresql.Driver"
     }
+
     
     spark = SparkSession.builder \
         .master("local[*]") \
