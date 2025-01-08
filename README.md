@@ -12,7 +12,7 @@ Welcome to this repository! Here, you'll find an in-depth analysis of property s
 
 ### Tech Stack & Tools
 
-Infrastructure: *Docker, Oracle Cloud Storage, Terraform* 
+Infrastructure: *Docker, Oracle Cloud Storage, Terraform*   
 Orchestration: *Apache Airflow*  
 Transformation: *Apache Spark, Pandas, Python*  
 Custom tasks: *Jupyter Notebook, Python*  
