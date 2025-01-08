@@ -21,9 +21,9 @@ def transform(df):
     cols_in_file_set = set(df.columns)
     missing_cols = columns_set - cols_in_file_set
     for col in missing_cols:
-        df.loc[:,col] = None
-    for col in columns:
-        df = df[df[col].notnull()]
+        df.loc[:,col] = "None"
+    # for col in columns:
+    #     df = df[df[col].notnull()]
     for col in columns:
         df[col] = df[col].astype(str)
     df = df[columns]
